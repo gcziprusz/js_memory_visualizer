@@ -1,12 +1,12 @@
 - make reference and complex type values also have the enabled property just like primitive types
-- style disabled variable value inputs to remove border
+- ~~style disabled variable value inputs to remove border~~
 - add labels to the main parts of the UI 
     like    - code editor
             - computer memory
 - add info ? bubbles with infor explaining parts 
     ? - heap 
     ? - stack 
-- Change style of the 3 top tabs currently it's black on black 
+- ~~Change style of the 3 top tabs currently it's black on black~~
 - cleaup code / delete unneded cruft (dependencies unused , unused code etc )
 - publish the project somewere (github pages?)
 - style the code editor portion of the UI 

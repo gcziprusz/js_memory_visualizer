@@ -4,6 +4,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+input[disabled] {
+  border:none;
+}
+.keyword {
+  color: red;
+}
+.variable {
+  color: royalblue;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;

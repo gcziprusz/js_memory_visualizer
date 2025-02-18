@@ -73,12 +73,12 @@ const MemoryVisualizer = () => {
           <div className="space-y-4">
             {Object.entries(variables.primitive).map(([name, {val,editable}]) => (
               <div key={name} className="flex items-center gap-4">
-                <code className="w-24">const {name} = </code>
+                <code className="w-40"><span className='keyword'>let</span> <span className='variable'>{name}</span> = </code>
                 <input
                   type="text"
                   value={val}
                   onChange={(e) => updateVariable('primitive', name, e.target.value)}
-                  className="font-mono w-48 p-2 border rounded"
+                  className="font-mono p-2 border rounded"
                   disabled={!editable}
                 />
               </div>
@@ -90,7 +90,9 @@ const MemoryVisualizer = () => {
         return (
           <div className="space-y-4">
             <div>
-              <code>const user = {'{'}</code>
+              <div className='flex items-center gap-4'>
+                <code className='w-40'><span className='keyword'>let</span> <span className='variable'>user</span> = {'{'}</code>
+              </div>
               <div className="ml-4 space-y-2">
                 <div className="flex items-center gap-4">
                   <code className="w-20">name: </code>
@@ -98,7 +100,7 @@ const MemoryVisualizer = () => {
                     type="text"
                     value={variables.reference.user.name.val}
                     onChange={(e) => updateVariable('reference', 'user.name', e.target.value)}
-                    className="font-mono w-48 p-2 border rounded"
+                    className="font-mono p-2 border rounded"
                   />
                 </div>
                 <div className="flex items-center gap-4">
@@ -107,33 +109,33 @@ const MemoryVisualizer = () => {
                     type="text"
                     value={variables.reference.user.age.val}
                     onChange={(e) => updateVariable('reference', 'user.age', e.target.value)}
-                    className="font-mono w-48 p-2 border rounded"
-                  />
+                    className="font-mono p-2 border rounded"
+                    />
+                    <code>{'}'}</code>
                 </div>
               </div>
-              <code>{'}'}</code>
             </div>
             <div className="flex items-center gap-4">
-              <code className="w-32">const numbers = </code>
+              <code className="w-40"><span className='keyword'>let</span> <span className='variable'>numbers</span> = </code>
               <input
 
                 type="text"
                 value={variables.reference.numbers.val}
                 onChange={(e) => updateVariable('reference', 'numbers', e.target.value)}
-                className="font-mono w-48 p-2 border rounded"
+                className="font-mono p-2 border rounded"
               />
             </div>
             <div className="flex items-center gap-4">
-              <code className="w-32">const numbersTwo = </code>
+              <code className="w-40"><span className='keyword'>let</span> <span className='variable'>numbersTwo</span> = </code>
               <span onChange={(e) => updateVariable('reference', 'numbersTwo', e.target.value)}
-                className="font-mono w-48 p-2">
+                className="font-mono p-2">
                 {variables.reference.numbersTwo.val};
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <code className="w-32">const deepCopy = </code>
+              <code className="w-40"><span className='keyword'>let</span> <span className='variable'>deepCopy</span> = </code>
               <span onChange={(e) => updateVariable('reference', 'deepCopy', e.target.value)}
-                className="font-mono w-48 p-2">
+                className="font-mono p-2">
                 {variables.reference.deepCopy.val};
               </span>
             </div>
@@ -143,7 +145,9 @@ const MemoryVisualizer = () => {
       case 'complex':
         return (
         <div className="space-y-4">
-        <code>const app = {'{'}</code>
+          <div className='flex items-center gap-4'>
+          <code className='w-40'><span className='keyword'>let</span> <span className='variable'>app</span> = {'{'}</code>
+        </div>  
         <div className="ml-4 space-y-2">
           <div className="flex items-center gap-4">
             <code className="w-20">name: </code>
@@ -151,7 +155,7 @@ const MemoryVisualizer = () => {
              type="text" 
               value={variables.complex.app.name}
               onChange={(e) => updateVariable('complex', 'app.name', e.target.value)}
-              className="font-mono w-48 p-2 border rounded"
+              className="font-mono p-2 border rounded"
             />
           </div>
           <div>
@@ -163,7 +167,7 @@ const MemoryVisualizer = () => {
                  type="text"
                   value={variables.complex.app.config.theme}
                   onChange={(e) => updateVariable('complex', 'app.config.theme', e.target.value)}
-                  className="font-mono w-48 p-2 border rounded"
+                  className="font-mono p-2 border rounded"
                 />
               </div>
               <code>users: [{'{'}</code>
@@ -174,7 +178,7 @@ const MemoryVisualizer = () => {
                    type="text"
                     value={variables.complex.app.config.users[0].id}
                     onChange={(e) => updateVariable('complex', 'app.config.users.0.id', e.target.value)}
-                    className="font-mono w-48 p-2 border rounded"
+                    className="font-mono p-2 border rounded"
                   />
                 </div>
                 <div className="flex items-center gap-4">
@@ -183,16 +187,16 @@ const MemoryVisualizer = () => {
                    type="text"
                     value={variables.complex.app.config.users[0].name}
                     onChange={(e) => updateVariable('complex', 'app.config.users.0.name', e.target.value)}
-                    className="font-mono w-48 p-2 border rounded"
+                    className="font-mono p-2 border rounded"
                   />
+                  <code>{'}]'}</code>
+                  <code>{'}'}</code>
+                  <code>{'}'}</code>
                 </div>
               </div>
-              <code>{'}]'}</code>
             </div>
-            <code>{'}'}</code>
           </div>
         </div>
-        <code>{'}'}</code>
       </div>
         );
       default:
@@ -200,15 +204,6 @@ const MemoryVisualizer = () => {
     }
   };
 
-//   const render = () => {
-//     const canvas = canvasRef.current;
-//     const ctx = canvas.getContext('2d');
-//     ctx.clearRect(0, 0, canvas.width, canvas.height);
-//     ctx.fillStyle = '#000';
-//     ctx.font = 'bold 16px sans-serif';
-//     ctx.textAlign = 'center';
-//     ctx.fillText('Memory Model', canvas.width / 2, 30);
-//   };
 const drawBox = (ctx, x, y, width, height, text, color) => {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, width, height);
@@ -356,29 +351,33 @@ const drawBox = (ctx, x, y, width, height, text, color) => {
 
   return (
     <div className="w-full max-w-4xl p-6 bg-white border rounded-md shadow">
+      <h1>JS Memory Explorer</h1>
+      <h2 className='mb-10'>Visualizing Value/Primitive Types vs. Reference Types</h2>
       <div className="flex space-x-4 mb-4">
         <button
-          className={`px-4 py-2 rounded ${activeTab === 'primitive' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
+          className={`w-1/3 px-4 py-2 rounded ${activeTab === 'primitive' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
           onClick={() => setActiveTab('primitive')}
         >
-          Primitive Types
+          Value/Primitive Types
         </button>
         <button
-          className={`px-4 py-2 rounded ${activeTab === 'reference' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
+          className={`w-1/3 px-4 py-2 rounded ${activeTab === 'reference' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
           onClick={() => setActiveTab('reference')}
         >
           Reference Types
         </button>
         <button
-          className={`px-4 py-2 rounded ${activeTab === 'complex' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
+          className={`w-1/3 px-4 py-2 rounded ${activeTab === 'complex' ? 'bg-blue-500 text-white' : 'bg-gray-100'}`}
           onClick={() => setActiveTab('complex')}
         >
           Complex Object
         </button>
       </div>
 
-      <div className="bg-slate-50 p-4 rounded-md mb-4">{renderEditableCode(activeTab)}</div>
-
+      <div className="bg-slate-50 p-4 rounded-md mb-4">
+        <h3 className='mb-10'><strong>Human-readable code in your text editor</strong></h3>
+        {renderEditableCode(activeTab)}
+      </div>
       <canvas ref={canvasRef} width={800} height={500} className="border border-slate-200 rounded-md w-full" />
     </div>
   );
